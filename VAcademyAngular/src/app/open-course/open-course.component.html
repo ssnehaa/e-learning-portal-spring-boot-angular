@@ -1,0 +1,66 @@
+<div [style.display]="showModalLecture ? 'block' : 'none'" class="modal" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">New Lecture</h4>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="uploadLecturesForm" (ngSubmit)="newLecture()">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" formControlName="title" class="form-control" [ngClass]="{ 'is-invalid': submitted && lectureUpload.title.errors }" />
+                        <div *ngIf="lectureUpload.title.errors" class="invalid-feedback">
+                            <div *ngIf="lectureUpload.title.errors.required">Title cannot be empty</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Lecture URL</label>
+                        <input type="text" formControlName="courseUrl" class="form-control" [ngClass]="{ 'is-invalid': submitted && lectureUpload.courseUrl.errors }" />
+                        <div *ngIf="lectureUpload.courseUrl.errors" class="invalid-feedback">
+                            <div *ngIf="lectureUpload.courseUrl.errors.required">About cannot be empty</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Poster Image URL</label>
+                        <input type="text" formControlName="posterImage" class="form-control" [ngClass]="{ 'is-invalid': submitted && lectureUpload.posterImage.errors }" />
+                        <div *ngIf="lectureUpload.posterImage.errors" class="invalid-feedback">
+                            <div *ngIf="lectureUpload.posterImage.errors.required">About cannot be empty</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <input type="text" formControlName="description" class="form-control" [ngClass]="{ 'is-invalid': submitted && lectureUpload.description.errors }" />
+                        <div *ngIf="lectureUpload.description.errors" class="invalid-feedback">
+                            <div *ngIf="lectureUpload.description.errors.required">About cannot be empty</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                            <button [disabled]="loading" class="btn btn-primary" type="submit">
+                                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                                Submit
+                            </button>
+                        </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark" data-dismiss="modal" (click) = "closeModal()">Close</button>      
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="text-align: right; margin: 30px;">
+    <a [routerLink]="['/assngTeacher']"><button type="button" class="btn btn-default" *ngIf="!isStudent" (click)="seeAssng()">See Assignment</button></a>
+    <a [routerLink]="['/assng']"><button type="button" class="btn btn-default" *ngIf="isStudent" (click)="seeAssng()">See Assignment</button></a>
+    <a [routerLink]="['/forum']"><button type="button" class="btn btn-default" (click)="seeAssng()" style="margin: 30px;">Comment Section</button></a>
+</div>
+            
+<div class="instructions" *ngFor="let a of lectures">
+    <div>
+        <img src="{{a.posterImage}}" style="width:300px;height:200px;margin:30px;" (click)="open(a.id)">
+        <button type="button" class="btn btn-link btn-lg" (click)="open(a.id)" style="color: black"><u>{{a.name}}</u></button>
+    </div>
+</div>
+<div style="margin-left: 50px">
+    <button type="button" class="btn btn-default" *ngIf="!isStudent" (click)="uploadLectures()">Add Lectures</button>
+</div>

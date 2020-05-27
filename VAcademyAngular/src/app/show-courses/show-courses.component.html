@@ -1,0 +1,33 @@
+<div *ngIf="!(courses?.length > 0)">
+    <h1>No Courses are uploaded!</h1>
+</div>
+<div class="row my-4" *ngIf="courses?.length > 0">
+    <div class="col-lg-3 col-md-4" *ngFor="let course of courses">
+        <div class="card card-inverse bg-inverse mt-3">
+            <div class="card-body">
+                <h3 class="card-title">{{course.courseName}}</h3>
+                <p class="card-text">{{course.teacherName}}</p>
+                <a class="btn btn-outline-secondary" (click)="openCourse(course.id)">More..</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div [style.display]="showModalCourseDetails ? 'block' : 'none'" class="modal" id="imagemodal" *ngIf="isCourse" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">{{courseDetails.courseName}}</h4>
+            </div>
+            <div class="modal-body">
+                Class : {{courseDetails.sclass}}<br><br>
+                Category : {{courseDetails.category}}<br><br>
+                Teached By : {{courseDetails.teacherName}}<br><br>
+                <button type = "button" class="btn btn-primary" *ngIf="isStudent" (click)="registerStudent(courseDetails.id, courseDetails.courseName)">Register</button>
+            </div>    
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark" data-dismiss="modal" (click) = "hideModal()">Close</button>      
+            </div>
+        </div>
+    </div>
+</div>

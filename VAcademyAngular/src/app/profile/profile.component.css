@@ -1,0 +1,19 @@
+.modal-dialog{
+    overflow-y: initial/* !important*/
+}
+.modal-body{
+    
+    overflow-y: auto;
+}
+
+img {
+    border-radius: 50%;
+  }
+  .icon {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}

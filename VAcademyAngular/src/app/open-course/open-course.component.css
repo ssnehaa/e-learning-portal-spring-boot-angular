@@ -1,0 +1,20 @@
+.im {
+  float: right;
+  margin-right: 20px;
+}
+
+.instructions {
+  margin-left: 5%;
+}
+
+.btn-default {
+  border: 1.5px solid black;
+  background-color: white;
+  color: black;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-default:hover {
+  background: #e7e7e7;
+}

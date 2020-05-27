@@ -1,0 +1,47 @@
+<div class="container" style="text-align: center;">
+  <h2>All Assignments</h2>
+  <table class="table" *ngIf="assng">
+    <thead>
+      <tr>
+        <th>Assignment</th>
+      </tr>
+      <tr *ngFor="let file of fileUploads | async">
+        <td><app-details-upload [fileUpload]='file'></app-details-upload>                
+          <label class="btn btn-default">
+            <input type="file" (change)="selectFile($event)">
+          </label>                  
+          <button class="btn btn-success" (change)="selectFile($event)" (click)="upload()">
+            Upload
+          </button>
+        </td>    
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>    
+  </table>
+</div>
+      
+<br><br>
+  
+<div class="container" style="text-align: center;">
+  <h2>Submitted Assigments</h2>        
+  <div *ngIf="(submittedFiles | async)">
+    <table class="table" *ngIf="myAssng">
+      <thead>
+        <tr>
+          <th>Assignment</th>
+          <th>Marks</th>
+        </tr>
+        <tr *ngFor="let file of submittedFiles | async">
+          <td><app-stud-assng [fileUpload]='file'></app-stud-assng></td>
+          <td>{{file.marks}}</td>    
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>  
+    </table>
+  </div>
+  <div *ngIf="!(submittedFiles | async)"><br>
+    <h5>No assignments submitted</h5>
+  </div>
+</div>

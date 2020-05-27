@@ -1,0 +1,235 @@
+<div class="container">
+    <div class="row my-2">
+        <div class="col-lg-8 order-lg-2">                
+            <div class="tab-content py-4">
+                <div class="tab-pane active" id="profile">
+                    <h5 class="mb-3">User Profile</h5>
+                    <div class="row">
+                        <div class="col-md-12">
+                                <h6><i class="material-icons" style="font-size:16px">info</i>About</h6>
+                            <p>
+                                {{about}}
+                                <button class="icon fa fa-pencil" style="float: right"  (click)="showAbout()"></button>
+                            </p>
+                        </div>
+                        <div class="col-md-12">
+                            <h5 class="mt-2">Profile Details</h5>
+                            <table class="table table-sm table-hover table-striped">
+                                <tbody>                                    
+                                    <tr>
+                                        <td>
+                                            <span class="fa fa-user-o"></span>
+                                            <strong>&ensp;Name</strong> &nbsp;&nbsp;&nbsp;&nbsp; {{name}}
+                                            <button class="icon fa fa-pencil" style="float: right" (click)="showName()"></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span class="fa fa-user"></span>
+                                            <strong>&ensp;Username</strong> &nbsp;&nbsp;&nbsp;&nbsp; {{username}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                                <span class="fa fa-envelope"></span>
+                                            <strong>&ensp;Email</strong> &nbsp;&nbsp;&nbsp;&nbsp; {{email}}
+                                            <button class="icon fa fa-pencil" style="float: right" (click)="showEmail()"></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                            <td>
+                                                <span 	class="fa fa-address-book-o"></span>
+                                                <strong>&ensp;Address</strong> &nbsp;&nbsp;&nbsp;&nbsp; {{address}}
+                                                <button class="icon fa fa-pencil" style="float: right;" (click)="showAddress()"></button>
+                                            </td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 order-lg-1 text-center">
+            <div class="container row">
+                <div class="col-md-12">
+                    <div *ngIf=retrievedImage>
+                        <img [src]="retrievedImage" style="width:150px;height:150px;">
+                    </div>
+                    <div *ngIf=!retrievedImage>
+                        <img src="//placehold.it/150" class="img-circle" alt="avatar" style="width:150px;height:150px;">
+                    </div>
+                </div> 
+            </div>
+            <h6 class="mt-2">Change profile picture</h6>
+            <label class="custom-file">
+                <input type="file" id="file" class="custom-file-input" (change)="onFileChanged($event)">
+                <span class="btn btn-default" style="border: 1px solid black">Choose file</span>
+            </label>
+        </div>
+    </div>
+    <div style="text-align: center">
+        <button  type="button" class="btn btn-primary" (click)="update()">
+            Update
+        </button>
+    </div>
+</div>
+
+
+
+    <div [style.display]="showModalUpdate ? 'block' : 'none'" class="modal" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Update Profile</h4>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="profileUpdateForm" (ngSubmit)="onSubmit()">
+                        <div class="form-group">
+                            <label>About</label>
+                            <input type="text" formControlName="about" class="form-control" [ngClass]="{ 'is-invalid': submitted && up.about.errors }" />
+                        </div>
+                        <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && up.name.errors }" />
+                            </div>
+                            <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && up.email.errors }" />
+                                </div>
+                                    <div class="form-group">
+                                            <label>Address</label>
+                                            <input type="text" formControlName="address" class="form-control" [ngClass]="{ 'is-invalid': submitted && up.address.errors }" />
+                                        </div>
+                        <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" name="remember"> Remember me
+                        </label>
+                        </div>
+                        <div class="form-group">
+                                <button [disabled]="loading" class="btn btn-primary" type="submit">
+                                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                                    Submit
+                                </button>
+                            </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-dismiss="modal" (click) = "hideUpdateForm()">Close</button>      
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div [style.display]="showModalAbout ? 'block' : 'none'" class="modal" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Edit About</h4>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="updateAboutForm" (ngSubmit)="editAbout()">
+                        <div class="form-group">
+                            <label>About</label>
+                            <input type="text" formControlName="about" class="form-control" [ngClass]="{ 'is-invalid': submitted && aboutEdit.about.errors }" />
+                            <div *ngIf="aboutEdit.about.errors" class="invalid-feedback">
+                                <div *ngIf="aboutEdit.about.errors.required">About cannot be empty</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary" type="submit">
+                                Submit
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-dismiss="modal" (click) = "hideAbout()">Close</button>      
+                </div>
+            </div>
+        </div>
+    </div>
+    <div [style.display]="showModalName ? 'block' : 'none'" class="modal" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Edit About</h4>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="updateNameForm" (ngSubmit)="editName()">
+                        <div class="form-group">
+                            <label>About</label>
+                            <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && nameEdit.name.errors }" />
+                            <div *ngIf="nameEdit.name.errors" class="invalid-feedback">
+                                <div *ngIf="nameEdit.name.errors.required">About cannot be empty</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary" type="submit">
+                                Submit
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-dismiss="modal" (click) = "hideName()">Close</button>      
+                </div>
+            </div>
+        </div>
+    </div>
+    <div [style.display]="showModalEmail ? 'block' : 'none'" class="modal" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Edit Email</h4>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="updateEmailForm" (ngSubmit)="editEmail()">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && emailEdit.email.errors }" />
+                            <div *ngIf="emailEdit.email.errors" class="invalid-feedback">
+                                <div *ngIf="emailEdit.email.errors.required">About cannot be empty</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary" type="submit">
+                                Submit
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-dismiss="modal" (click) = "hideEmail()">Close</button>      
+                </div>
+            </div>
+        </div>
+    </div>
+    <div [style.display]="showModalAddress ? 'block' : 'none'" class="modal" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Edit About</h4>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="updateAddressForm" (ngSubmit)="editAddress()">
+                        <div class="form-group">
+                            <label>About</label>
+                            <input type="text" formControlName="address" class="form-control" [ngClass]="{ 'is-invalid': submitted && addressEdit.address.errors }" />
+                            <div *ngIf="addressEdit.address.errors" class="invalid-feedback">
+                                <div *ngIf="addressEdit.address.errors.required">Enter Address</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary" type="submit">
+                                Submit
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-dismiss="modal" (click) = "hideAddress()">Close</button>      
+                </div>
+            </div>
+        </div>
+    </div>

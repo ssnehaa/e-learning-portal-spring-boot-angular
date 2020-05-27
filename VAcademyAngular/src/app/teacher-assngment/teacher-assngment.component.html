@@ -1,0 +1,70 @@
+<div class="container" style="text-align: center;">
+    <h2>All Assignments</h2>        
+    <table class="table" *ngIf="assng">
+        <thead>
+            <tr>
+              <th>Assignment</th>
+            </tr>
+            <tr *ngFor="let file of fileUploads | async">
+                <td><app-details-upload [fileUpload]='file'></app-details-upload>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <h5>Upload Assignment</h5>
+    <br>
+    <app-form-upload></app-form-upload>
+</div>
+
+<br><br>    
+      
+<div class="container" style="text-align: center;">
+    <h2>Submitted Assigments</h2>        
+    <table class="table" *ngIf="myAssng">
+        <thead>
+        <tr>
+            <th>Assignment</th>
+            <th>Submitted By</th>
+            <th>Marks</th>
+        </tr>
+        <tr *ngFor="let file of submittedFiles | async">
+            <td><app-stud-assng [fileUpload]='file'></app-stud-assng>
+            <td>{{file.username}}</td>
+            <td>{{file.marks}}&nbsp;&nbsp;&nbsp;<button (click)="showLogin(file.id)">Submit</button></td>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+<div [style.display]="showModalLogin ? 'block' : 'none'" class="modal" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog login">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Add Marks</h4>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label>Marks</label>
+                        <input type="text" formControlName="marks" class="form-control" [ngClass]="{ 'is-invalid': submittedLogin && login.marks.errors }" />
+                        <div *ngIf="login.marks.errors" class="invalid-feedback">
+                            <div *ngIf="login.marks.errors.required">Marks is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button [disabled]="loading" class="btn btn-primary" type="submit">
+                            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark" data-dismiss="modal" (click) = "hideLogin()">Close</button>      
+            </div>
+        </div>
+    </div>
+</div>

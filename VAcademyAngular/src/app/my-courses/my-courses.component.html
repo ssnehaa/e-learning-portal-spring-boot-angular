@@ -1,0 +1,67 @@
+<div *ngIf="!exists">
+    <h1>You have no courses!</h1>
+</div>
+
+<div class="grid-container" *ngIf="exists">
+    <div class="row my-4">
+        <div class="col-lg-3 col-md-4" *ngFor="let course of myCourses">
+            <div class="card card-inverse bg-inverse mt-3">
+                <div class="card-body">
+                    <h3 class="card-title">{{course.courseName}}</h3>
+                    <p class="card-text">{{course.teacherName}}</p>
+                    <a class="btn btn-outline-secondary" (click)="openCourse(course.id, course.courseName)">More..</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="teacher" style="text-align: center">
+    <button type="button" class="btn btn-primary" (click)="addCourse()">
+        Add Course
+    </button>
+</div>
+
+<div [style.display]="showModalCourse ? 'block' : 'none'" class="modal" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Add Course</h4>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="newCourseForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label>Course Name</label>
+                        <input type="text" formControlName="courseName" class="form-control" [ngClass]="{ 'is-invalid': submitted && course.courseName.errors }" />
+                        <div *ngIf="submitted && course.courseName.errors" class="invalid-feedback">
+                            <div *ngIf="course.courseName.errors.required">Email is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Class</label>
+                        <input type="number" formControlName="sclass" class="form-control" [ngClass]="{ 'is-invalid': submitted && course.sclass.errors }" />
+                        <div *ngIf="submitted && course.sclass.errors" class="invalid-feedback">
+                            <div *ngIf="course.sclass.errors.required">Class is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <input type="text" formControlName="category" class="form-control" [ngClass]="{ 'is-invalid': submitted && course.category.errors }" />
+                        <div *ngIf="submitted && course.category.errors" class="invalid-feedback">
+                            <div *ngIf="course.category.errors.required">Email is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button [disabled]="loading" class="btn btn-primary" type="submit">
+                            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                            Add Course
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark" data-dismiss="modal" (click) = "hideCourse()">Close</button>      
+            </div>
+        </div>
+    </div>
+</div>
