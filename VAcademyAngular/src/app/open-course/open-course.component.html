@@ -49,7 +49,20 @@
     </div>
 </div>
 
-<div style="text-align: right; margin: 30px;">
+<div style="background-color: #333344; height: 45%;">
+    .
+    <div>
+        <a [routerLink]="['/dashboard']" style="color: white; margin: 10px;">Home</a>
+        <a [routerLink]="['/myCourse']" style="color: white; margin: 10px;">My Courses</a>
+        <a [routerLink]="['/myProfile']" style="color: white; margin: 10px;">Profile</a>
+        <a [routerLink]="['/logout']" style="color: white; margin: 10px;">Logout</a>
+</div>
+<div style="text-align: center; margin: 20px; color: white;">
+    <h1>VAcademy</h1>
+    </div>
+
+<div style="text-align: left; margin: 30px;">
+        <h3 style="text-align: left; margin-left: 50px; color: white;">{{courseName}}</h3>
     <a [routerLink]="['/assngTeacher']"><button type="button" class="btn btn-default" *ngIf="!isStudent" (click)="seeAssng()">See Assignment</button></a>
     <a [routerLink]="['/assng']"><button type="button" class="btn btn-default" *ngIf="isStudent" (click)="seeAssng()">See Assignment</button></a>
     <a [routerLink]="['/forum']"><button type="button" class="btn btn-default" (click)="seeAssng()" style="margin: 30px;">Comment Section</button></a>
@@ -58,9 +71,11 @@
 <div class="instructions" *ngFor="let a of lectures">
     <div>
         <img src="{{a.posterImage}}" style="width:300px;height:200px;margin:30px;" (click)="open(a.id)">
-        <button type="button" class="btn btn-link btn-lg" (click)="open(a.id)" style="color: black"><u>{{a.name}}</u></button>
+        <button type="button" class="btn btn-link btn-lg" (click)="open(a.id)" style="color: black"><u><h1>{{a.name}}</h1></u></button>
+        <hr style="width:95%; border-width: 1.5px;">
     </div>
 </div>
-<div style="margin-left: 50px">
+<div style="margin: 50px">
     <button type="button" class="btn btn-default" *ngIf="!isStudent" (click)="uploadLectures()">Add Lectures</button>
+</div>
 </div>

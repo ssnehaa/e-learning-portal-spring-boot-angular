@@ -1,4 +1,4 @@
-<div class="col-md-6 offset-md-3 col-xs-12">
+<!--<div class="col-md-9 offset-md-3 col-xs-12"></div>
         <h1>Login</h1><br><br>
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
@@ -34,4 +34,60 @@
             </button>
         </div>
     </form>
+</div>-->
+
+<div style="background-color: whitesmoke; height: 100%;">
+<div style="background-color: #333344; height: 45%;">
+    <br>
+<div class="title">
+        <a [routerLink] = "['/home']" style=" text-decoration: none"><h3 style="color: white; margin-top: 60px;">VAcademy</h3></a>
+</div>
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">Sign in to your VAcademy account</h4>
+        </div>
+        <div class="modal-body">
+                <br><br>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <div class="input-container">
+                    <span class="fa fa-user" style="font-size:20px"></span>
+                    <label>&ensp;Username</label>
+                </div>
+                <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submittedLogin && login.username.errors }" />
+                <div *ngIf="login.username.errors" class="invalid-feedback">
+                    <div *ngIf="login.username.errors.required">Username is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-container">
+                    <i class="material-icons" style="font-size:20px">vpn_key</i>
+                    <label>&ensp;Password</label>
+                </div>
+                <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submittedLogin && login.password.errors }" />
+                <div *ngIf="login.password.errors" class="invalid-feedback">
+                    <div *ngIf="login.password.errors.required">Password is required</div>
+                    <div *ngIf="login.password.errors.minlength">Password must be at least 6 characters</div>
+                </div>
+            </div>
+            <br>
+            <div class="form-group">
+                <button [disabled]="loading" class="btn btn-success btn-block btn-lg" type="submit">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Login
+                </button>
+            </div>
+            <a [routerLink] = "['/register']">Create Account</a>
+            <!--<div class="form-group">
+                    <button [disabled]="loading" class="btn btn-success btn-block btn-lg">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                        <a [routerLink] = "['/register']" style="color: white;">Create Account</a>
+                    </button>
+                </div>-->
+        </form>
+        </div>
+    </div>
+</div>
+</div>
 </div>

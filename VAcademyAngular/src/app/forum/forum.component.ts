@@ -19,6 +19,9 @@ export class ForumComponent implements OnInit {
 
   comments: any;
 
+  retrievedImage: any;
+  base64Data: any;
+
   constructor(private formBuilder: FormBuilder,
     private authService: AuthService,
     private forumService: ForumService,
@@ -35,6 +38,12 @@ export class ForumComponent implements OnInit {
     this.forumService.getComments(this.courseService.getCourseName()).subscribe(
       data => {
         this.comments = data;
+      //this.base64Data = this.comments.picByte;
+      //this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+        console.log("COMMENTS : ", this.comments);
+        for(var i = 0; i < this.comments.length; i++) {
+          this.comments[i].picByte = 'data:image/jpeg;base64,'+this.comments[i].picByte;
+        }
       },
       err => {
         console.log(err.error.message);

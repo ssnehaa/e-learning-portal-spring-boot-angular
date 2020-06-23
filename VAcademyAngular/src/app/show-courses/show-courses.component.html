@@ -1,4 +1,4 @@
-<div *ngIf="!(courses?.length > 0)">
+<!--<div *ngIf="!(courses?.length > 0)">
     <h1>No Courses are uploaded!</h1>
 </div>
 <div class="row my-4" *ngIf="courses?.length > 0">
@@ -30,4 +30,51 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->
+
+<div [style.display]="showModalCourseDetails ? 'block' : 'none'" class="modal" id="imagemodal" *ngIf="isCourse" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">{{courseDetails.courseName}}</h4>
+                </div>
+                <div class="modal-body">
+                    Class : {{courseDetails.sclass}}<br><br>
+                    Category : {{courseDetails.category}}<br><br>
+                    Teached By : {{courseDetails.teacherName}}<br><br>
+                    <button type = "button" class="btn btn-primary" *ngIf="isStudent" (click)="registerStudent(courseDetails.id, courseDetails.courseName)">Register</button>
+                </div>
+                    
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-dismiss="modal" (click) = "hideModal()">Close</button>      
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div style="background-color: #333344; height: 45%;">
+        .
+        <div>
+        <a [routerLink]="['/dashboard']" style="color: white; margin: 10px;">Home</a>
+        <a [routerLink]="['/myCourse']" style="color: white; margin: 10px;">My Courses</a>
+        <a [routerLink]="['/myProfile']" style="color: white; margin: 10px;">Profile</a>
+        <a [routerLink]="['/logout']" style="color: white; margin: 10px;">Logout</a>
+    </div>
+    <div style="text-align: center; margin: 20px; color: white;">
+        <h1>VAcademy</h1>
+        </div>
+    <div class="row my-4" *ngIf="courses?.length > 0" style="margin: 20px;">
+        <div class="col-lg-3 col-md-4" *ngFor="let course of courses">
+    <div class="card card-inverse bg-inverse mt-3" style="width: 18rem;">
+        <img src="{{course.imageUrl}}" width="100%" height="180">
+        <!--<svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" role="img"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>-->
+      
+        <div class="card-body">
+          <h5 class="card-title">{{course.courseName}}</h5>
+          <p class="card-text">{{course.teacherName}}</p>
+          <button class="btn btn-primary" (click)="openCourse(course.id)">More..</button>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>

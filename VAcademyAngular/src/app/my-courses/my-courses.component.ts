@@ -78,7 +78,8 @@ export class MyCoursesComponent implements OnInit {
     this.newCourseForm = this.formBuilder.group({
       courseName: ['', [Validators.required]],
       sclass: ['', Validators.required],
-      category: ['', Validators.required]
+      category: ['', Validators.required],
+      url: ['', Validators.required]
     });
   }
 

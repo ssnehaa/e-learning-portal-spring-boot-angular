@@ -32,9 +32,9 @@ export class AuthService {
       name: user.name,
       role: user.role,
       email: user.email,
-      password: user.password,
-      about: user.about,
-      address: user.address
+      password: user.password
+      //about: user.about,
+      //address: user.address
     }, httpOptions);
   }
 

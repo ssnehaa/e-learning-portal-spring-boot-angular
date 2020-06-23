@@ -1,8 +1,19 @@
+<div style="background-color: #333344; height: 45%;">
+    .
+    <div>
+        <a [routerLink]="['/dashboard']" style="color: white; margin: 10px;">Home</a>
+        <a [routerLink]="['/myCourse']" style="color: white; margin: 10px;">My Courses</a>
+        <a [routerLink]="['/myProfile']" style="color: white; margin: 10px;">Profile</a>
+        <a [routerLink]="['/logout']" style="color: white; margin: 10px;">Logout</a>
+</div>
+<div style="text-align: center; margin: 20px; color: white;">
+    <h1>VAcademy</h1>
+    </div>
 <div *ngIf="!exists">
     <h1>You have no courses!</h1>
 </div>
 
-<div class="grid-container" *ngIf="exists">
+<!--<div class="grid-container" *ngIf="exists">
     <div class="row my-4">
         <div class="col-lg-3 col-md-4" *ngFor="let course of myCourses">
             <div class="card card-inverse bg-inverse mt-3">
@@ -14,6 +25,21 @@
             </div>
         </div>
     </div>
+</div>-->
+<div class="row my-4" *ngIf="myCourses?.length > 0" style="margin: 20px;">
+    <div class="col-lg-3 col-md-4" *ngFor="let course of myCourses">
+<div class="card card-inverse bg-inverse mt-3" style="width: 18rem;">
+    <img src="{{course.imageUrl}}" width="100%" height="180">
+
+    <!--<svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" role="img"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>-->
+  
+    <div class="card-body">
+      <h5 class="card-title">{{course.courseName}}</h5>
+      <p class="card-text">{{course.teacherName}}</p>
+      <a class="btn btn-outline-secondary" (click)="openCourse(course.id, course.courseName)">More..</a>
+    </div>
+  </div>
+</div>
 </div>
 
 <div *ngIf="teacher" style="text-align: center">
@@ -21,7 +47,7 @@
         Add Course
     </button>
 </div>
-
+</div>
 <div [style.display]="showModalCourse ? 'block' : 'none'" class="modal" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -34,7 +60,7 @@
                         <label>Course Name</label>
                         <input type="text" formControlName="courseName" class="form-control" [ngClass]="{ 'is-invalid': submitted && course.courseName.errors }" />
                         <div *ngIf="submitted && course.courseName.errors" class="invalid-feedback">
-                            <div *ngIf="course.courseName.errors.required">Email is required</div>
+                            <div *ngIf="course.courseName.errors.required">Course Name is required</div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -51,6 +77,13 @@
                             <div *ngIf="course.category.errors.required">Email is required</div>
                         </div>
                     </div>
+                    <div class="form-group">
+                            <label>Image URL</label>
+                            <input type="text" formControlName="url" class="form-control" [ngClass]="{ 'is-invalid': submitted && course.url.errors }" />
+                            <div *ngIf="submitted && course.url.errors" class="invalid-feedback">
+                                <div *ngIf="course.url.errors.required">URL is required</div>
+                            </div>
+                        </div>
                     <div class="form-group">
                         <button [disabled]="loading" class="btn btn-primary" type="submit">
                             <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>

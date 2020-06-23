@@ -14,9 +14,9 @@ export class HeaderComponent implements OnInit {
     router.events.forEach((event) => {
       if (event instanceof NavigationStart) {
         if ((event['url'] == '/login') || (event['url'] == '/register') || (event['url'] == '/home')) {
-          this.showHead = true;
-        } else {
           this.showHead = false;
+        } else {
+          this.showHead = true;
         }
       }
     });

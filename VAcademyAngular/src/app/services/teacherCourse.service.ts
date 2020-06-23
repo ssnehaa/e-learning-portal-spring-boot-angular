@@ -25,7 +25,8 @@ export class teacherCourse {
           sclass: course.sclass,
           category: course.category,
           teacherId: this.tokenStorage.getUser().id,
-          teacherName: this.tokenStorage.getUser().name
+          teacherName: this.tokenStorage.getUser().name,
+          imageUrl: course.url
         }, httpOptions);
       }
 
