@@ -1,3 +1,97 @@
+<div style="background-color: #333344; height: 30%;">
+    .
+    <div>
+        <a [routerLink]="['/dashboard']" style="color: white; margin: 10px;">Home</a>
+        <a [routerLink]="['/myCourse']" style="color: white; margin: 10px;">My Courses</a>
+        <a [routerLink]="['/myProfile']" style="color: white; margin: 10px;">Profile</a>
+        <a [routerLink]="['/logout']" style="color: white; margin: 10px;">Logout</a>
+</div>
+<div style="text-align: center; margin: 20px; color: white;">
+    <h1>VAcademy</h1>
+    </div>
+<br><br><br><br><br>
+
+
+<div class="row my-4" style="margin-left: 200px;">
+    <div class="col-lg-3 col-md-4">
+<div class="card card-inverse bg-inverse mt-3" style="width: 18rem; height: 25rem; text-align: center;">
+    <br>
+    <div *ngIf=retrievedImage>
+        <img [src]="retrievedImage"  width="100%" height="180">
+    </div>
+    <div *ngIf=!retrievedImage>
+        <img src="https://fertilitynetworkuk.org/wp-content/uploads/2017/01/Facebook-no-profile-picture-icon-620x389.jpg" width="100%" height="180">
+    </div>
+    <h6 class="mt-2">Change profile picture</h6>
+            <label class="custom-file">
+                <input type="file" id="file" class="custom-file-input" (change)="onFileChanged($event)">
+                <span class="btn btn-default" style="border: 1px solid black">Choose file</span>
+            </label>
+            <br><br>
+  
+    <div class="card-body">
+      <h5 class="card-title">Name : {{name}}</h5>
+      
+    </div>
+  </div>
+</div>
+
+<div class="col-lg-3 col-md-4">
+    <div class="card card-inverse bg-inverse mt-3" style="width: 50rem; height: 25rem;;">
+        <!--<svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" role="img"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>-->
+      
+        <div class="card-body">
+          <h5 class="mb-3">User Profile</h5>
+                    <div class="row">
+                        <div class="col-md-12">
+                                <h6><i class="material-icons" style="font-size:16px">info</i>About</h6>
+                            <p>
+                                {{about}}
+                                <button class="icon fa fa-pencil" style="float: right"  (click)="showAbout()"></button>
+                            </p>
+                        </div>
+                        <div class="col-md-12">
+                            <h5 class="mt-2">Profile Details</h5>
+                            <table class="table table-sm table-hover table-striped">
+                                <tbody>                                    
+                                    <tr>
+                                        <td>
+                                            <span class="fa fa-user-o"></span>
+                                            <strong>&ensp;Name</strong> &nbsp;&nbsp;&nbsp;&nbsp; {{name}}
+                                            <button class="icon fa fa-pencil" style="float: right" (click)="showName()"></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span class="fa fa-user"></span>
+                                            <strong>&ensp;Username</strong> &nbsp;&nbsp;&nbsp;&nbsp; {{username}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                                <span class="fa fa-envelope"></span>
+                                            <strong>&ensp;Email</strong> &nbsp;&nbsp;&nbsp;&nbsp; {{email}}
+                                            <button class="icon fa fa-pencil" style="float: right" (click)="showEmail()"></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                            <td>
+                                                <span 	class="fa fa-address-book-o"></span>
+                                                <strong>&ensp;Address</strong> &nbsp;&nbsp;&nbsp;&nbsp; {{address}}
+                                                <button class="icon fa fa-pencil" style="float: right;" (click)="showAddress()"></button>
+                                            </td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+          
+        </div>
+      </div>
+    </div>
+</div>
+
+<!--
 <div class="container">
     <div class="row my-2">
         <div class="col-lg-8 order-lg-2">                
@@ -74,7 +168,7 @@
         </button>
     </div>
 </div>
-
+-->
 
 
     <div [style.display]="showModalUpdate ? 'block' : 'none'" class="modal" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -232,4 +326,5 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
