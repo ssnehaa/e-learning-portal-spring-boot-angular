@@ -21,26 +21,34 @@ Go to localhost://4200 in the browser
 ![Registration Form](https://github.com/ssnehaa/VAcademy/blob/master/Screenshots/register.PNG "Registration Form")
 
 **Login Form**
+
 ![Login Form](https://github.com/ssnehaa/VAcademy/blob/master/Screenshots/login.PNG "Login Form")
 
 **Dashboard Page displaying all the courses**
+
 ![Dashboard](https://github.com/ssnehaa/VAcademy/blob/master/Screenshots/login.PNG "Dashboard")
 
 **If the user is a student, the register button allows him. her to register to the course**
+
 ![Course Registration](https://github.com/ssnehaa/VAcademy/blob/master/Screenshots/register%20to%20a%20course.PNG "Course Registration")
 
 **Courses the user is registered to**
+
 ![My Courses](https://github.com/ssnehaa/VAcademy/blob/master/Screenshots/login.PNG "My Course Page")
 
 **Profile Details of the User**
+
 ![Profile Page](https://github.com/ssnehaa/VAcademy/blob/master/Screenshots/login.PNG "Profile Page")
 
 **Course Content**
+
 If the user is a teacher, he/ she is allowed to add lectures to the course
 ![Lecture](https://github.com/ssnehaa/VAcademy/blob/master/Screenshots/login.PNG "Lecture")
 
 **Assignment Page**
+
 ![Assignments](https://github.com/ssnehaa/VAcademy/blob/master/Screenshots/login.PNG "Assignments")
 
 **Comment Section**
+
 ![Comment Section](https://github.com/ssnehaa/VAcademy/blob/master/Screenshots/login.PNG "Comment Section")
