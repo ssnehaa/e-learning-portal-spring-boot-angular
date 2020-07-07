@@ -28,7 +28,7 @@ Go to localhost://4200 in the browser
 
 ![Dashboard](https://github.com/ssnehaa/VAcademy/blob/master/Screenshots/dashboard.PNG "Dashboard")
 
-**If the user is a student, the register button allows him. her to register to the course**
+**If the user is a student, the register button allows him/ her to register to the course**
 
 ![Course Registration](https://github.com/ssnehaa/VAcademy/blob/master/Screenshots/register%20to%20a%20course.PNG "Course Registration")
 
@@ -47,6 +47,8 @@ If the user is a teacher, he/ she is allowed to add lectures to the course
 ![Lecture](https://github.com/ssnehaa/VAcademy/blob/master/Screenshots/teacherLecture.PNG "Lecture")
 
 **Assignment Page**
+
+It allows the student to submit the assignments and teachers can mark each assignment.
 
 ![Assignments](https://github.com/ssnehaa/VAcademy/blob/master/Screenshots/Assignments.PNG "Assignments")
 
