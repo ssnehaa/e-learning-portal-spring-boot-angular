@@ -31,7 +31,7 @@
         <tr *ngFor="let file of submittedFiles | async">
             <td><app-stud-assng [fileUpload]='file'></app-stud-assng>
             <td>{{file.username}}</td>
-            <td>{{file.marks}}&nbsp;&nbsp;&nbsp;<button (click)="showLogin(file.id)">Submit</button></td>
+            <td>{{file.marks}}&nbsp;&nbsp;&nbsp;<button class="btn btn-success" (click)="showLogin(file.id)">Submit</button></td>
         </tr>
         </thead>
         <tbody>
