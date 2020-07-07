@@ -72,9 +72,7 @@ public class AuthController {
 							 signUpRequest.getEmail(),
 							 encoder.encode(signUpRequest.getPassword()),
 							 signUpRequest.getName(),
-							 signUpRequest.getRole(),
-							 signUpRequest.getAbout(),
-							 signUpRequest.getAddress());
+							 signUpRequest.getRole());
 
 
 		studentRepository.save(student);
