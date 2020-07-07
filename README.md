@@ -17,6 +17,7 @@ This project is based on online learning portal. It helps the teacher to upload 
 Go to localhost://4200 in the browser
 
 **Registration Form**
+
 ![Registration Form](https://github.com/ssnehaa/VAcademy/blob/master/Screenshots/register.PNG "Registration Form")
 
 **Login Form**
