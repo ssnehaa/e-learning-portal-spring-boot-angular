@@ -41,7 +41,8 @@ public class TeacherCourseController {
 				addCourseRequest.getSclass(),
 				addCourseRequest.getCategory(),
 				addCourseRequest.getTeacherId(),
-				addCourseRequest.getTeacherName());
+				addCourseRequest.getTeacherName(),
+				addCourseRequest.getImageUrl());
 
 
 		courseRepository.save(student);
