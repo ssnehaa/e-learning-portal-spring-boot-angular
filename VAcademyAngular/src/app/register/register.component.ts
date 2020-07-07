@@ -29,8 +29,8 @@ export class RegisterComponent implements OnInit {
       role: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
-      about: ['', Validators.required],
-      address: ['', Validators.required],
+      //about: ['', Validators.required],
+      //address: ['', Validators.required],
     });
     this.options = [
       'student',
