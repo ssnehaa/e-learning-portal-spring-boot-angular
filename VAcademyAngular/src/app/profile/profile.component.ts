@@ -54,8 +54,10 @@ export class ProfileComponent implements OnInit {
     this.name = this.tokenStorage.getUser().name;
     this.username = this.tokenStorage.getUser().username;
     this.role = this.tokenStorage.getUser().role;
-    this.about = this.tokenStorage.getUser().about;
-    this.address = this.tokenStorage.getUser().address;
+    if(this.tokenStorage.getUser().about)
+      this.about = this.tokenStorage.getUser().about;
+    if(this.tokenStorage.getUser().address)
+      this.address = this.tokenStorage.getUser().address;
     if(this.role == "teacher") {
       this.flag = true;
     }
