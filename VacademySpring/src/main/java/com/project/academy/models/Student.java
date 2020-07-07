@@ -55,14 +55,12 @@ public class Student {
 	public Student() {
 	}
 
-	public Student(String username, String email, String password, String name, String role, String about, String address) {
+	public Student(String username, String email, String password, String name, String role) {
 		this.username = username;
 		this.email = email;
 		this.password = password;
 		this.name = name;
 		this.role = role;
-		this.about = about;
-		this.address = address;
 	}
 	
 	public Student(String name, byte[] picByte) {
