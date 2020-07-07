@@ -6,8 +6,8 @@ This project is based on online learning portal. It helps the teacher to upload 
 ## Runninng the angular project
 1. Open cmd
 2. Go to the project directory
-3. Run 'npm install' to install the Angular dependencies
-4. Run 'npm start'
+3. Run `npm install` to install the Angular dependencies
+4. Run `npm start`
 
 ## Running the spring project
 1. In the application.properties file change the username and password to the required MySQL username and password
