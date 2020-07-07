@@ -15,4 +15,5 @@ This project is based on online learning portal. It helps the teacher to upload 
 3. To run the application in any other port, change the 8081 for server.port in application.properties
 
 Go to localhost://4200 in the browser
-![alt text](VAcademyAngular/register.png "Registration Page")
+
+![alt text](VAcademy/VAcademyAngular/register.png "Registration Page")
