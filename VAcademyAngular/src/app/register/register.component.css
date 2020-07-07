@@ -1,6 +1,10 @@
-.input-container {
-    display: -ms-flexbox;
-    display: flex;
-    width: 100%;
-    margin-bottom: 15px;
+  .modal-dialog {
+    width: 400px;
+    }
+  .modal-content {
+      background-color: white;
+      border: none;
+    }
+  .title {
+    text-align: center;
   }
