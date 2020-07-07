@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.academy.models.StudentCourse;
 import com.project.academy.payload.response.MessageResponse;
+import com.project.academy.repository.CourseRepository;
 import com.project.academy.repository.StudentCourseRepository;
 import com.project.academy.request.StudentCourseRequest;
 
@@ -25,12 +26,17 @@ public class StudentCourseController {
 	
 	@Autowired
 	StudentCourseRepository studentCourseRepository;
+	@Autowired
+	CourseRepository courseRepository;
 	
 	@PostMapping(path="/studentCourse")
 	  public List<StudentCourse> getCourseByStudentId(@RequestParam("studentId") long studentId) {
 		System.out.println("STUDENTID : " + studentId);
+		System.out.println("MY COURSES");
 		if(studentCourseRepository.existsByStudentId(studentId)) {
 			List<StudentCourse> cr = studentCourseRepository.findByStudentId(studentId);
+			System.out.println("MYCOURSENAME " + courseRepository.findByCourseName(cr.get(0).getCourseName()));
+			System.out.println("MYCOURSEIMAGE " + courseRepository.findByCourseName(cr.get(0).getCourseName()).get().getImageUrl());
 			return cr;
 		}
 		else {
@@ -48,7 +54,8 @@ public class StudentCourseController {
 	StudentCourse studentCourse = new StudentCourse(studentCourseRequest.getCourseId(),
 				studentCourseRequest.getCourseName(), 
 				studentCourseRequest.getStudentId(),
-				studentCourseRequest.getStudentName());
+				studentCourseRequest.getStudentName(),
+				courseRepository.findByCourseName(studentCourseRequest.getCourseName()).get().getImageUrl());
 
 
 		studentCourseRepository.save(studentCourse);
