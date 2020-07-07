@@ -22,14 +22,17 @@ public class StudentCourse {
 	
 	private String studentName;
 	
+	private String imageUrl;
+	
 	public StudentCourse() {
 	}
 	
-	public StudentCourse(long courseId, String courseName, long studentId, String studentName) {
+	public StudentCourse(long courseId, String courseName, long studentId, String studentName, String imageUrl) {
 		this.courseId = courseId;
 		this.courseName = courseName;
 		this.studentId = studentId;
 		this.studentName = studentName;
+		this.imageUrl = imageUrl;
 	}
 
 	public Long getCourseId() {
@@ -70,6 +73,14 @@ public class StudentCourse {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
 }
