@@ -52,7 +52,6 @@ export class OpenCourseComponent implements OnInit {
         this.courseCategory = data.category;
         this.courseClass = data.sclass;
         this.courseTeacher = data.teacherName;
-        console.log("COURSENAME : ", data);
       },
       err => {
         console.log("ERROR : ", err.error.message);
@@ -69,9 +68,7 @@ export class OpenCourseComponent implements OnInit {
     this.courseVideoService.getLectures(this.courseService.getCourseName()).subscribe(
       data => {
         this.lectures = data;
-        for(var i = 0; i < this.lectures.length; i++) {
-          console.log("fxgc : ", this.lectures[i]);
-        }
+        for(var i = 0; i < this.lectures.length; i++) { }
       },
       err => {
         this.errorMessage = err.error.message;
