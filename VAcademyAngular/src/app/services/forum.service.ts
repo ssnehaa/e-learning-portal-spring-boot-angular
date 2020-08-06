@@ -28,10 +28,7 @@ export class ForumService {
       }
 
       getComments(courseName): Observable<any> {
-        let params = new HttpParams()
-        .set('courseName', courseName);
-        return this.http.post(AUTH_API + 'getComment', params
-        );
+        return this.http.get(AUTH_API + 'getComment/' + courseName);
       }
 
   }
