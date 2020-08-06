@@ -40,7 +40,6 @@ export class ForumComponent implements OnInit {
         this.comments = data;
       //this.base64Data = this.comments.picByte;
       //this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
-        console.log("COMMENTS : ", this.comments);
         for(var i = 0; i < this.comments.length; i++) {
           this.comments[i].picByte = 'data:image/jpeg;base64,'+this.comments[i].picByte;
         }
@@ -59,7 +58,6 @@ export class ForumComponent implements OnInit {
     if (this.commentForm.invalid) {
       return;
     }
-    console.log("CALLED");
     this.loading = true;
     this.forumService.addComment(this.courseService.getCourseName(), this.tokenService.getUser().name, this.commentForm.value).subscribe(
       data => {
