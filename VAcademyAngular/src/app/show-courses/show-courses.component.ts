@@ -39,7 +39,6 @@ export class ShowCoursesComponent implements OnInit {
     this.teacherCourseService.getCourses().subscribe(
       data => {
         this.courses = data;
-        console.log(data);
       },
       err => {
         this.errorMessage = err.error.message;
@@ -57,7 +56,6 @@ export class ShowCoursesComponent implements OnInit {
   openCourse(id) {
     this.isCourse = true;
     this.showModalCourseDetails = true;
-    console.log(id);
     this.teacherCourseService.getCourseById(id).subscribe(
       data => {
         this.courseDetails = data;
