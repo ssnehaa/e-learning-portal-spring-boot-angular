@@ -19,6 +19,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -179,8 +181,8 @@ public class AuthController {
         return ResponseEntity.status(HttpStatus.OK);
     }
     
-	@PostMapping("/get")
-    public Student getImage(@Valid @RequestBody String imageName) throws IOException {
+	@GetMapping("/getImage/{imageName}")
+    public Student getImage(@Valid @PathVariable("imageName") String imageName) throws IOException {
     	System.out.println("IMAGENAME" + imageName);
     	System.out.println(imageName);
         final Optional<Student> retrievedImage = studentRepository.findByName(imageName);
