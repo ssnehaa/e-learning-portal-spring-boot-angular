@@ -38,9 +38,7 @@ export class studentAssngService {
       }
 
       getAssngTeacher(courseName): Observable<any> {
-        const formdata: FormData = new FormData();
-        formdata.append('courseName', courseName);
-        return this.http.post(AUTH_API + 'file/assngTeacher', formdata);
+        return this.http.get(AUTH_API + 'file/assngTeacher/' + courseName);
       }
 
       updateMarks(id, marks): Observable<any> {
