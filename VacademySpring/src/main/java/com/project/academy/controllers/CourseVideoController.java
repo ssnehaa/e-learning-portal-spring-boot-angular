@@ -8,6 +8,8 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,10 +38,8 @@ public class CourseVideoController {
 		return ResponseEntity.ok(new MessageResponse("Course added successfully!"));
 	}
 	
-	@PostMapping(path="/lecture")
-	  public List<VideoModel> getLectures(@Valid @RequestParam("courseName") String courseName) {
-	    // This returns a JSON or XML with the users
-		System.out.println("COURSENAMEFORVIDEO : " + courseName);
+	@GetMapping(path="/lecture/{courseName}")
+	  public List<VideoModel> getLectures(@Valid @PathVariable("courseName") String courseName) {
 		if(addVideoRepository.existsByCourseName(courseName)) {
 			List<VideoModel> list = addVideoRepository.findByCourseName(courseName);
 			return list;
@@ -49,9 +49,8 @@ public class CourseVideoController {
 		}
 	  }
 	
-	@PostMapping(path="/getCourseVideo")
-	  public Optional<VideoModel> getVideoById(@RequestParam("id") long id) {
-		System.out.println("IIIDDD : " + id);
+	@GetMapping(path="/getCourseVideo/{id}")
+	  public Optional<VideoModel> getVideoById(@PathVariable("id") long id) {
 		if(addVideoRepository.existsById(id)) {
 			Optional<VideoModel> cr = addVideoRepository.findById(id);
 			return cr;
