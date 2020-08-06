@@ -91,7 +91,6 @@ this.updateAddressForm = this.fb.group({
 
   this.authService.getImage(this.username).subscribe(
     data => {
-      console.log(data);
       this.retrieveResonse = data;
       this.base64Data = this.retrieveResonse.picByte;
       this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
@@ -148,7 +147,6 @@ this.updateAddressForm = this.fb.group({
 
     this.authService.uploadImage(uploadImageData).subscribe(
       data => {
-        console.log(data);
         console.log("Image uploaded successfully");
       },
       err => {
@@ -165,7 +163,6 @@ this.updateAddressForm = this.fb.group({
 
       this.authService.uploadImage(uploadImageData).subscribe(
         data => {
-          console.log(data);
           console.log("Image uploaded successfully");
         },
         err => {
