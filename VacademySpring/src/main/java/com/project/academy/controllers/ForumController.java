@@ -7,6 +7,8 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,12 +29,7 @@ public class ForumController {
 	ForumRepository forumRepository;
 	
 	@PostMapping("/addComment")
-	public ResponseEntity<?> registerForum(@Valid @RequestBody ForumRequest addCourseRequest) {
-
-		// Create new user's account
-		System.out.println("FORUMCOURSE : " + addCourseRequest.getCourseName());
-		System.out.println("FORUMUSER : " + addCourseRequest.getUsername());
-		System.out.println("COMMENT : " + addCourseRequest.getComment());
+	public ResponseEntity<?> addComment(@Valid @RequestBody ForumRequest addCourseRequest) {
 		Forum forum = new Forum(addCourseRequest.getCourseName(), addCourseRequest.getUsername(), addCourseRequest.getComment());
 
 
@@ -41,13 +38,10 @@ public class ForumController {
 		return ResponseEntity.ok(new MessageResponse("Course added successfully!"));
 	}
 	
-	@PostMapping(path="/getComment")
-	  public List<Forum> getCommentt(@RequestParam("courseName") String courseName) {
-		System.out.println("CourseComment : " + courseName);
-	    // This returns a JSON or XML with the users
+	@GetMapping(path="/getComment/{courseName}")
+	  public List<Forum> getComment(@PathVariable("courseName") String courseName) {
 		if(forumRepository.existsByCourseName(courseName)) {
 			List<Forum> cr = forumRepository.findByCourseName(courseName);
-			System.out.println(cr.size());
 			return cr;
 		}
 		else {
