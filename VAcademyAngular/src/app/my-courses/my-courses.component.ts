@@ -66,7 +66,6 @@ export class MyCoursesComponent implements OnInit {
             this.exists = true;
             this.myCourses = data;
           }
-          console.log(data);
         },
         err => {
           this.errorMessage = err.error.message;
