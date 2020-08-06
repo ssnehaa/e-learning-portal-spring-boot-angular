@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient, HttpEvent, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { TokenStorageService } from './token-storage.service';
 
 const VIDEO_KEY = 'auth-video';
@@ -35,15 +34,11 @@ export class CourseVideoService {
       }
 
       getLectures(courseName) {
-        let params = new HttpParams()
-        .set('courseName', courseName);
-        return this.http.post(AUTH_API + 'lecture', params);
+        return this.http.get(AUTH_API + 'lecture/' + courseName);
       }
 
       getLectureById(id) {
-        let params = new HttpParams()
-        .set('id', id);
-        return this.http.post(AUTH_API + 'getCourseVideo', params);
+        return this.http.get(AUTH_API + 'getCourseVideo/' + id);
       }
 
       public saveVideoId(id) {
@@ -54,9 +49,5 @@ export class CourseVideoService {
 
       public getVideoId() {
         return this.currentVideoId;
-        //return sessionStorage.getItem(VIDEO_KEY);
       }
   }
-
-  //http://video-js.zencoder.com/oceans-clip.jpg
-  //https://vjs.zencdn.net/v/oceans.mp4
