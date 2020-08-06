@@ -37,7 +37,6 @@ public class StudentAssngController {
     public String uploadAssng(@RequestParam("file") MultipartFile file, @RequestParam("courseName") String courseName, @RequestParam("username") String username) {
     	
     	try {
-    		// save file to PostgreSQL
 	    	StudentAssng filemode = new StudentAssng(file.getOriginalFilename(), file.getContentType(), file.getBytes(), courseName, username);
 	    	studentAssngRepository.save(filemode);
 	    	return "File uploaded successfully! -> filename = " + file.getOriginalFilename();
@@ -55,18 +54,13 @@ public class StudentAssngController {
     
 	@PostMapping("/file/assng")
 	public List<StudentAssng> getFilesAssng(@RequestParam("courseName") String courseName, @RequestParam("userName") String userName) {
-    	System.out.println("HELLO : " + courseName);
-    	System.out.println("WORLD : " + userName);
     	List<StudentAssng> cr = studentAssngRepository.findByCourseNameAndUsername(courseName, userName);
-    	System.out.println("Course : " + cr.get(0));
 		return cr;
 	}
 	
-	@PostMapping("/file/assngTeacher")
-	public List<StudentAssng> getFilesAssngTeacher(@RequestParam("courseName") String  courseName) {
-		System.out.println("Teacher Coursename : " + courseName);
+	@GetMapping("/file/assngTeacher/{courseName}")
+	public List<StudentAssng> getFilesAssngTeacher(@PathVariable("courseName") String  courseName) {
     	List<StudentAssng> cr = studentAssngRepository.findByCourseName(courseName);
-    	System.out.println(cr.size());
 		return cr;
 	}
 	
