@@ -20,9 +20,7 @@ export class studentCourse {
         ) { }
 
         getCourseByStudentId(id): Observable<any> {
-            let params = new HttpParams()
-            .set('studentId', id);
-            return this.http.post(AUTH_API + 'studentCourse', params);
+            return this.http.get(AUTH_API + 'studentCourse/' + id);
           }
 
           addStudentCourse(courseId, courseName, studentId, studentName): Observable<any> {
