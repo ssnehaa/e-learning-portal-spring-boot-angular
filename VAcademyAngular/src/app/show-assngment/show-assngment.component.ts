@@ -37,12 +37,9 @@ export class ShowAssngmentComponent implements OnInit {
     if(this.tokenService.getUser().role == 'teacher') {
       this.isTeacher = true;
     }
-      console.log("COURSENAME : ", this.courseService.getCourseName());
       this.fileUploads = this.teacherAssngService.getFiles(this.courseService.getCourseName());
       
-      console.log("USERNAME : ", this.tokenService.getUser().name);
       this.submittedFiles = this.studentAssngService.getAssng(this.courseService.getCourseName(), this.tokenService.getUser().name);
-      console.log("CONSOLE : ", this.fileUploads);
 
       if(this.fileUploads != null) {
         this.assng = true;
@@ -63,10 +60,7 @@ export class ShowAssngmentComponent implements OnInit {
 
     this.currentFileUpload = this.selectedFiles.item(0);
     this.uploadFile = this.currentFileUpload;
-    console.log("NAME : " + this.currentFileUpload.name);
-    console.log("USENAME : ", this.tokenService.getUser().name)
     this.studentAssngService.uploadAssng(this.currentFileUpload, this.courseService.getCourseName(), this.tokenService.getUser().name).subscribe(event => {
-      console.log(event);
       alert("Successfully added");
     },
     err => {
@@ -75,10 +69,6 @@ export class ShowAssngmentComponent implements OnInit {
     });
 
     this.selectedFiles = undefined;
-  }
-
-  onClick(id) {
-    console.log("ID : ", id);
   }
 
 }
