@@ -33,8 +33,6 @@ export class AuthService {
       role: user.role,
       email: user.email,
       password: user.password
-      //about: user.about,
-      //address: user.address
     }, httpOptions);
   }
 
@@ -53,7 +51,7 @@ export class AuthService {
   }
 
   getImage(imageName) {
-    return this.http.post(AUTH_API + 'get', imageName);
+    return this.http.get(AUTH_API + 'getImage/' + imageName);
   }
 
   editAbout(id, about): Observable<any> {

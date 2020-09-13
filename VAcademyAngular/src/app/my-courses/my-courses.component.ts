@@ -6,6 +6,7 @@ import { CourseService } from '../services/course.service';
 import { Router } from '@angular/router';
 import { teacherCourse } from '../services/teacherCourse.service';
 import { studentCourse } from '../services/studentCourse.service';
+import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'app-my-courses',
@@ -35,7 +36,8 @@ export class MyCoursesComponent implements OnInit {
     private courseService: CourseService,
     private teacherCourseService: teacherCourse,
     private studentCourseService: studentCourse,
-    private router: Router
+    private router: Router,
+    private alertService: AlertService
   ) { }
 
   ngOnInit(): void {
@@ -66,7 +68,6 @@ export class MyCoursesComponent implements OnInit {
             this.exists = true;
             this.myCourses = data;
           }
-          console.log(data);
         },
         err => {
           this.errorMessage = err.error.message;
@@ -103,13 +104,13 @@ export class MyCoursesComponent implements OnInit {
     this.loading = true;
     this.teacherCourseService.addCourse(this.newCourseForm.value).subscribe(
       data => {
-        alert("Course Added successfully!");
+        this.alertService.confirmThis("Course Added successfully!");
         this.hideCourse();
       },
       err => {
         this.errorMessage = err.error.message;
         this.loading = false;
-        alert("Could not add course!" + this.errorMessage);
+        this.alertService.confirmThis("Could not add course!" + this.errorMessage);
       }
     );
     window.location.reload();

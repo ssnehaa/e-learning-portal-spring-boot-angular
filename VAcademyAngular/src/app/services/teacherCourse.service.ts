@@ -35,14 +35,10 @@ export class teacherCourse {
       }
 
       getCourseById(id): Observable<any> {
-        let params = new HttpParams()
-        .set('id', id);
-        return this.http.post(AUTH_API + 'courseById', params);
+        return this.http.get(AUTH_API + 'courseById/' + id);
       }
 
       getCourseByTecaherId(id): Observable<any> {
-        let params = new HttpParams()
-        .set('teacherId', id);
-        return this.http.post(AUTH_API + 'courseByTeacherId', params);
+        return this.http.get(AUTH_API + 'courseByTeacherId/' + id);
       }
 }

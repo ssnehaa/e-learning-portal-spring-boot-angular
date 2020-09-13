@@ -5,6 +5,7 @@ import { CourseService } from 'src/app/services/course.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { studentAssngService } from 'src/app/services/studentAssng.service';
 import { teacherAssngService } from 'src/app/services/teacherAssng.service';
+import { AlertService } from 'src/app/services/alert.service';
 
 @Component({
   selector: 'app-list-upload',
@@ -27,7 +28,8 @@ export class ListUploadComponent implements OnInit {
   constructor(private uploadService: AuthService, private courseService: CourseService,
     private studentAssngService: studentAssngService,
     private teacherAssngService: teacherAssngService,
-    private tokenService: TokenStorageService) { }
+    private tokenService: TokenStorageService,
+    private alertService: AlertService) { }
 
   ngOnInit() {
   }
@@ -55,7 +57,7 @@ export class ListUploadComponent implements OnInit {
     this.currentFileUpload = this.selectedFiles.item(0);
     this.uploadFile = this.currentFileUpload;
     this.studentAssngService.uploadAssng(this.currentFileUpload, this.courseService.getCourseName(), this.tokenService.getUser().name).subscribe(event => {
-    alert("Successfully added");
+      this.alertService.confirmThis("Successfully added");
     },
     err => {
       //console.log(err);

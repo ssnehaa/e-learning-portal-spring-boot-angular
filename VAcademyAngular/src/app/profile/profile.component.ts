@@ -3,6 +3,7 @@ import { TokenStorageService } from '../services/token-storage.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'app-profile',
@@ -46,7 +47,8 @@ export class ProfileComponent implements OnInit {
 
   constructor(private tokenStorage: TokenStorageService,
     private authService: AuthService,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder,
+    private alertService: AlertService) { }
 
   ngOnInit(): void {
     this.id = this.tokenStorage.getUser().id;
@@ -91,7 +93,6 @@ this.updateAddressForm = this.fb.group({
 
   this.authService.getImage(this.username).subscribe(
     data => {
-      console.log(data);
       this.retrieveResonse = data;
       this.base64Data = this.retrieveResonse.picByte;
       this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
@@ -125,13 +126,13 @@ this.updateAddressForm = this.fb.group({
         data => {
           this.tokenStorage.saveToken(data.accessToken);
           this.tokenStorage.saveUser(data);
-          alert("Updated");
+          this.alertService.confirmThis("Updated");
           this.loading = false;
         },
         err => {
           this.errorMessage = err.error.message;
           this.loading = false;
-          alert("Failed!" + this.errorMessage);
+          this.alertService.confirmThis("Failed!" + this.errorMessage);
         }
       );
       this.submitted = false;
@@ -148,7 +149,6 @@ this.updateAddressForm = this.fb.group({
 
     this.authService.uploadImage(uploadImageData).subscribe(
       data => {
-        console.log(data);
         console.log("Image uploaded successfully");
       },
       err => {
@@ -165,7 +165,6 @@ this.updateAddressForm = this.fb.group({
 
       this.authService.uploadImage(uploadImageData).subscribe(
         data => {
-          console.log(data);
           console.log("Image uploaded successfully");
         },
         err => {
@@ -229,11 +228,11 @@ this.updateAddressForm = this.fb.group({
         data => {
           this.tokenStorage.saveToken(data.accessToken);
           this.tokenStorage.saveUser(data);
-          alert("Updated");
+          this.alertService.confirmThis("About is updated");
         },
         err => {
           this.errorMessage = err.error.message;
-          alert("Failed!" + this.errorMessage);
+          this.alertService.confirmThis("Failed!" + this.errorMessage);
         }
       );
       this.submitted = false;
@@ -248,11 +247,11 @@ this.updateAddressForm = this.fb.group({
         data => {
           this.tokenStorage.saveToken(data.accessToken);
           this.tokenStorage.saveUser(data);
-          alert("Updated");
+          this.alertService.confirmThis("Updated");
         },
         err => {
           this.errorMessage = err.error.message;
-          alert("Failed!" + this.errorMessage);
+          this.alertService.confirmThis("Failed!" + this.errorMessage);
         }
       );
       this.submitted = false;
@@ -267,11 +266,11 @@ this.updateAddressForm = this.fb.group({
         data => {
           this.tokenStorage.saveToken(data.accessToken);
           this.tokenStorage.saveUser(data);
-          alert("Updated");
+          this.alertService.confirmThis("Updated");
           },
         err => {
           this.errorMessage = err.error.message;
-          alert("Failed!" + this.errorMessage);
+          this.alertService.confirmThis("Failed!" + this.errorMessage);
         }
       );
       this.submitted = false;
@@ -286,11 +285,11 @@ this.updateAddressForm = this.fb.group({
         data => {
           this.tokenStorage.saveToken(data.accessToken);
           this.tokenStorage.saveUser(data);
-          alert("Updated");
+          this.alertService.confirmThis("Updated");
         },
         err => {
           this.errorMessage = err.error.message;
-          alert("Failed!" + this.errorMessage);
+          this.alertService.confirmThis("Failed!" + this.errorMessage);
         }
       );
       this.submitted = false;

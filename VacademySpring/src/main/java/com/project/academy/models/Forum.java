@@ -1,9 +1,13 @@
 package com.project.academy.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -11,7 +15,7 @@ import javax.persistence.Table;
 public class Forum {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long f_id;
 
 	private String courseName;
 	
@@ -19,21 +23,33 @@ public class Forum {
 	
 	private String comment;
 	
+	@ManyToOne
+	private Student student;
+
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+
 	public Forum() {
 	}
 	
-	public Forum(String courseName, String username, String comment) {
+	public Forum(String courseName, String username, String comment, Student student) {
 		this.courseName = courseName;
 		this.username = username;
 		this.comment = comment;
+		this.student = student;
 	}
 
-	public Long getId() {
-		return id;
+	public Long getF_id() {
+		return f_id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setF_id(Long f_id) {
+		this.f_id = f_id;
 	}
 
 	public String getCourseName() {

@@ -5,6 +5,7 @@ import { AuthService } from '../services/auth.service';
 import { TokenStorageService } from '../services/token-storage.service';
 import { teacherCourse } from '../services/teacherCourse.service';
 import { studentCourse } from '../services/studentCourse.service';
+import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'app-all-courses',
@@ -26,7 +27,8 @@ export class AllCoursesComponent implements OnInit {
 
   constructor(private tokenStorage: TokenStorageService,
     private teacherCourseService: teacherCourse,
-    private studentCourseService: studentCourse
+    private studentCourseService: studentCourse,
+    private alertService: AlertService
     ) { }
 
   ngOnInit(): void {
@@ -65,11 +67,11 @@ export class AllCoursesComponent implements OnInit {
     this.studentCourseService.addStudentCourse(courseId, courseName, this.studentId, this.studentName).subscribe(
       data => {
         this.courseDetails = data;
-        alert("Registered!");
+        this.alertService.confirmThis("Registered!");
       },
       err => {
         this.errorMessage = err.error.message;
-        alert(this.errorMessage);
+        this.alertService.confirmThis(this.errorMessage);
       }
     );
     this.hideModal();

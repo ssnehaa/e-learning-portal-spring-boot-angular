@@ -23,7 +23,7 @@ export class DisplayVideosComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.courseVideoService.getVideoId();
-    console.log(this.id);
+    //console.log(this.id);
     this.courseVideoService.getLectureById(this.id).subscribe(
       data => {
         this.lecture = data;

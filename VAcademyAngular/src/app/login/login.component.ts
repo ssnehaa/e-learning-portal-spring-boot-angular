@@ -3,6 +3,7 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { TokenStorageService } from '../services/token-storage.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private tokenStorage: TokenStorageService) { }
+    private tokenStorage: TokenStorageService,
+    private confirmDialogService: AlertService) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -38,7 +40,6 @@ export class LoginComponent implements OnInit {
       this.loading = true;
       this.authService.login(this.loginForm.value).subscribe(
         data => {
-          console.log(data);
           this.tokenStorage.saveToken(data.accessToken);
           this.tokenStorage.saveUser(data);
           //alert("Your login is successful!");
@@ -47,8 +48,11 @@ export class LoginComponent implements OnInit {
         err => {
           this.errorMessage = err.error.message;
           this.loading = false;
-          alert("Sign In failed!" + this.errorMessage);
+          this.confirmDialogService.confirmThis("Sign In failed");
+          //alert("Sign In failed!" + this.errorMessage);
+          //this.alertService.error(err);
         }
       );
   }
+
 }

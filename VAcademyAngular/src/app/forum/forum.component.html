@@ -10,7 +10,14 @@
           <div class="offset-md-1 col-xs-12">
             <h3>Comments</h3><br>
             <div *ngFor="let comment of comments">
-            <h5>{{comment.username}}</h5>
+                <div *ngIf=comment.student.picByte>
+                        <h5><img [src]="comment.student.picByte"  width="35" height="35" style="border-radius:50%">        
+                            {{comment.username}}</h5>
+            </div>
+            <div *ngIf=!comment.student.picByte>
+                <h5><img src="https://fertilitynetworkuk.org/wp-content/uploads/2017/01/Facebook-no-profile-picture-icon-620x389.jpg" width="35" height="35" style="border-radius:50%">
+                    {{comment.username}}</h5>
+                </div>
             <p  style="color: grey">{{comment.comment}}</p>
         </div>
         

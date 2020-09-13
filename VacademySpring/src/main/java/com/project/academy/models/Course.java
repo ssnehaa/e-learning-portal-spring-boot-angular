@@ -24,16 +24,19 @@ public class Course {
 	private Long teacherId;
 	
 	private String teacherName;
+	
+	private String imageUrl;
 
 	public Course() {
 	}
 	
-	public Course(String courseName, int sclass, String category, Long teacherId, String teacherName) {
+	public Course(String courseName, int sclass, String category, Long teacherId, String teacherName, String imageUrl) {
 		this.courseName = courseName;
 		this.sclass = sclass;
 		this.category = category;
 		this.teacherId = teacherId;
 		this.teacherName = teacherName;
+		this.imageUrl = imageUrl;
 	}
 
 	public Long getId() {
@@ -82,6 +85,14 @@ public class Course {
 
 	public void setTeacherName(String teacherName) {
 		this.teacherName = teacherName;
+	}
+	
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 	
 	

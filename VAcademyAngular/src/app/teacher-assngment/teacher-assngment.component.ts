@@ -6,6 +6,7 @@ import { TokenStorageService } from '../services/token-storage.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { studentAssngService } from '../services/studentAssng.service';
 import { teacherAssngService } from '../services/teacherAssng.service';
+import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'app-teacher-assngment',
@@ -38,7 +39,8 @@ export class TeacherAssngmentComponent implements OnInit {
     private studentAssngService: studentAssngService,
     private teacherAssngService: teacherAssngService,
     private tokenService: TokenStorageService,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,
+    private alertService: AlertService) { }
 
   ngOnInit(): void {
 
@@ -73,11 +75,11 @@ export class TeacherAssngmentComponent implements OnInit {
     this.currentFileUpload = this.selectedFiles.item(0);
     this.uploadFile = this.currentFileUpload;
     this.studentAssngService.uploadAssng(this.currentFileUpload, this.courseService.getCourseName(), this.tokenService.getUser().name).subscribe(event => {
-    alert("Successfully added");
+      this.alertService.confirmThis("Successfully added");
     },
     err => {
       console.log(err);
-      alert(err);
+      this.alertService.confirmThis(err);
     });
 
     this.selectedFiles = undefined;

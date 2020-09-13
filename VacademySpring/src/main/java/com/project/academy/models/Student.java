@@ -1,6 +1,8 @@
 package com.project.academy.models;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -40,6 +42,9 @@ public class Student {
 	
 	private String address;
 	
+	@OneToMany(mappedBy = "student")
+	private List<Forum> forum = new ArrayList<>();
+	
 	@Lob
     @Column(name = "picByte")
     private byte[] picByte;
@@ -55,14 +60,12 @@ public class Student {
 	public Student() {
 	}
 
-	public Student(String username, String email, String password, String name, String role, String about, String address) {
+	public Student(String username, String email, String password, String name, String role) {
 		this.username = username;
 		this.email = email;
 		this.password = password;
 		this.name = name;
 		this.role = role;
-		this.about = about;
-		this.address = address;
 	}
 	
 	public Student(String name, byte[] picByte) {
@@ -77,6 +80,14 @@ public class Student {
 	public void setAbout(String about) {
 		this.about = about;
 	}
+
+	/*public List<Forum> getForum() {
+		return forum;
+	}
+
+	public void setForum(List<Forum> forum) {
+		this.forum = forum;
+	}*/
 
 	public String getAddress() {
 		return address;

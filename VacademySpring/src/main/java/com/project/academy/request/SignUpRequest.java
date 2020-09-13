@@ -21,26 +21,6 @@ public class SignUpRequest {
     private String name;
     
     private String role;
-    
-    private String about;
-    
-    private String address;
-  
-    public String getAbout() {
-		return about;
-	}
-
-	public void setAbout(String about) {
-		this.about = about;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
 
 	public void setRole(String role) {
 		this.role = role;

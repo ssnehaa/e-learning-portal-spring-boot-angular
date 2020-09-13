@@ -23,15 +23,13 @@ export class ForumService {
         return this.http.post(AUTH_API + 'addComment', {
           courseName: courseName,
           username: username,
-          comment: comment.comment
+          comment: comment.comment,
+          student : this.tokenStorage.getUser()
         }, httpOptions);
       }
 
       getComments(courseName): Observable<any> {
-        let params = new HttpParams()
-        .set('courseName', courseName);
-        return this.http.post(AUTH_API + 'getComment', params
-        );
+        return this.http.get(AUTH_API + 'getComment/' + courseName);
       }
 
   }

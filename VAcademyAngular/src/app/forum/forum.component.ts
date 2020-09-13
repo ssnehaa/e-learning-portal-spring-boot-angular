@@ -4,6 +4,7 @@ import { AuthService } from '../services/auth.service';
 import { TokenStorageService } from '../services/token-storage.service';
 import { CourseService } from '../services/course.service';
 import { ForumService } from '../services/forum.service';
+import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'app-forum',
@@ -26,7 +27,8 @@ export class ForumComponent implements OnInit {
     private authService: AuthService,
     private forumService: ForumService,
     private tokenService: TokenStorageService,
-    private courseService: CourseService
+    private courseService: CourseService,
+    private alertService: AlertService
     ) { }
 
   ngOnInit(): void {
@@ -38,11 +40,15 @@ export class ForumComponent implements OnInit {
     this.forumService.getComments(this.courseService.getCourseName()).subscribe(
       data => {
         this.comments = data;
+        //console.log("COMMENTS ", this.comments);
       //this.base64Data = this.comments.picByte;
       //this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
-        console.log("COMMENTS : ", this.comments);
         for(var i = 0; i < this.comments.length; i++) {
-          this.comments[i].picByte = 'data:image/jpeg;base64,'+this.comments[i].picByte;
+          console.log("COMMENTS ", this.comments[i].student.picByte);
+          //this.base64Data = this.comments[i].student.picByte;
+      //this.retrievedImage[i] = 'data:image/jpeg;base64,' + this.base64Data;
+      if(this.comments[i].student.picByte != null)
+          this.comments[i].student.picByte = 'data:image/jpeg;base64,'+this.comments[i].student.picByte;
         }
       },
       err => {
@@ -59,7 +65,6 @@ export class ForumComponent implements OnInit {
     if (this.commentForm.invalid) {
       return;
     }
-    console.log("CALLED");
     this.loading = true;
     this.forumService.addComment(this.courseService.getCourseName(), this.tokenService.getUser().name, this.commentForm.value).subscribe(
       data => {
@@ -69,7 +74,7 @@ export class ForumComponent implements OnInit {
       err => {
         this.errorMessage = err.error.message;
         this.loading = false;
-        alert(this.errorMessage);
+        this.alertService.confirmThis((String)(this.errorMessage));
       }
     );
     window.location.reload();

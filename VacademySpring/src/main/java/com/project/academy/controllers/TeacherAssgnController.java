@@ -36,9 +36,7 @@ public class TeacherAssgnController {
      */
     @PostMapping("/file/upload")
     public String uploadMultipartFile(@RequestParam("file") MultipartFile file, @RequestParam("courseName") String courseName) {
-    	System.out.println("CHECK : " + courseName);
     	try {
-    		// save file to PostgreSQL
 	    	FileModel filemode = new FileModel(file.getOriginalFilename(), file.getContentType(), file.getBytes(), courseName);
 	    	fileRepository.save(filemode);
 	    	return "File uploaded successfully! -> filename = " + file.getOriginalFilename();
@@ -58,7 +56,6 @@ public class TeacherAssgnController {
     
     @PostMapping("/file/course")
 	public List<FileModel> getFilesCourse(@RequestParam("courseName") String courseName) {
-    	System.out.println("COURSENAME : " + courseName);
 		return fileRepository.findByCourseName(courseName);
 	}
     

@@ -4,6 +4,7 @@ import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { teacherCourse } from '../services/teacherCourse.service';
 import { studentCourse } from '../services/studentCourse.service';
+import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'app-show-courses',
@@ -31,7 +32,8 @@ export class ShowCoursesComponent implements OnInit {
 
   constructor(private tokenStorage: TokenStorageService,
     private teacherCourseService: teacherCourse,
-    private studentCourseService: studentCourse
+    private studentCourseService: studentCourse,
+    private alertService: AlertService
   ) { }
 
   ngOnInit(): void {
@@ -39,7 +41,6 @@ export class ShowCoursesComponent implements OnInit {
     this.teacherCourseService.getCourses().subscribe(
       data => {
         this.courses = data;
-        console.log(data);
       },
       err => {
         this.errorMessage = err.error.message;
@@ -57,7 +58,6 @@ export class ShowCoursesComponent implements OnInit {
   openCourse(id) {
     this.isCourse = true;
     this.showModalCourseDetails = true;
-    console.log(id);
     this.teacherCourseService.getCourseById(id).subscribe(
       data => {
         this.courseDetails = data;
@@ -80,11 +80,11 @@ export class ShowCoursesComponent implements OnInit {
     this.studentCourseService.addStudentCourse(courseId, courseName, this.studentId, this.studentName).subscribe(
       data => {
         this.courseDetails = data;
-        alert("Added!");
+        this.alertService.confirmThis("Course Added!");
       },
       err => {
         this.errorMessage = err.error.message;
-        alert(this.errorMessage);
+        this.alertService.confirmThis(this.errorMessage);
       }
     );
     this.hideModal();

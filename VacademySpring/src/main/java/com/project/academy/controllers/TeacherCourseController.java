@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,7 +42,8 @@ public class TeacherCourseController {
 				addCourseRequest.getSclass(),
 				addCourseRequest.getCategory(),
 				addCourseRequest.getTeacherId(),
-				addCourseRequest.getTeacherName());
+				addCourseRequest.getTeacherName(),
+				addCourseRequest.getImageUrl());
 
 
 		courseRepository.save(student);
@@ -54,16 +56,15 @@ public class TeacherCourseController {
 	    return courseRepository.findAll();
 	  }
 	
-	@PostMapping(path="/courseById")
-	  public Optional<Course> getCourseById(@RequestParam("id") long id) {
+	@GetMapping(path="/courseById/{id}")
+	  public Optional<Course> getCourseById(@PathVariable("id") long id) {
 		return (courseRepository.findById(id));
 	  }
 	
-	@PostMapping(path="/courseByTeacherId")
-	  public List<Course> getCourseByTeacherId(@RequestParam("teacherId") long teacherId) {
+	@GetMapping(path="/courseByTeacherId/{id}")
+	  public List<Course> getCourseByTeacherId(@PathVariable("id") long teacherId) {
 		if(courseRepository.existsByTeacherId(teacherId)) {
 		List<Course> cr = courseRepository.findByTeacherId(teacherId);
-		System.out.println(cr.get(0).getSclass());
 		
 		return cr;
 		}

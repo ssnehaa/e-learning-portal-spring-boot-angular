@@ -29,6 +29,7 @@ import { StudAssngComponent } from './stud-assng/stud-assng.component';
 import { TeacherAssngmentComponent } from './teacher-assngment/teacher-assngment.component';
 import { ForumComponent } from './forum/forum.component';
 import { DisplayVideosComponent } from './display-videos/display-videos.component';
+import { AlertComponent } from './alert/alert.component';
 
 
 const appRoutes: Routes = [
@@ -71,7 +72,8 @@ const appRoutes: Routes = [
     StudAssngComponent,
     TeacherAssngmentComponent,
     ForumComponent,
-    DisplayVideosComponent
+    DisplayVideosComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
