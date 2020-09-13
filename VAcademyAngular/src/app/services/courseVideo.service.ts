@@ -51,6 +51,3 @@ export class CourseVideoService {
         return this.currentVideoId;
       }
   }
-
-  //http://video-js.zencoder.com/oceans-clip.jpg
-  //https://vjs.zencdn.net/v/oceans.mp4

@@ -40,6 +40,7 @@ export class ForumComponent implements OnInit {
     this.forumService.getComments(this.courseService.getCourseName()).subscribe(
       data => {
         this.comments = data;
+<<<<<<< HEAD
         //console.log("COMMENTS ", this.comments);
       //this.base64Data = this.comments.picByte;
       //this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
@@ -49,6 +50,12 @@ export class ForumComponent implements OnInit {
       //this.retrievedImage[i] = 'data:image/jpeg;base64,' + this.base64Data;
       if(this.comments[i].student.picByte != null)
           this.comments[i].student.picByte = 'data:image/jpeg;base64,'+this.comments[i].student.picByte;
+=======
+      //this.base64Data = this.comments.picByte;
+      //this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+        for(var i = 0; i < this.comments.length; i++) {
+          this.comments[i].picByte = 'data:image/jpeg;base64,'+this.comments[i].picByte;
+>>>>>>> 2e9c805fc8ca8c59496db8c5dd8be397305068a6
         }
       },
       err => {

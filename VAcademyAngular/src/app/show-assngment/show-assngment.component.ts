@@ -63,7 +63,11 @@ export class ShowAssngmentComponent implements OnInit {
     this.currentFileUpload = this.selectedFiles.item(0);
     this.uploadFile = this.currentFileUpload;
     this.studentAssngService.uploadAssng(this.currentFileUpload, this.courseService.getCourseName(), this.tokenService.getUser().name).subscribe(event => {
+<<<<<<< HEAD
       this.alertService.confirmThis("Successfully added");
+=======
+      alert("Successfully added");
+>>>>>>> 2e9c805fc8ca8c59496db8c5dd8be397305068a6
     },
     err => {
       console.log(err);

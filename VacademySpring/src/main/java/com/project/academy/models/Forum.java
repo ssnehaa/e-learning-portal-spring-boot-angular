@@ -6,8 +6,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+<<<<<<< HEAD
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+=======
+>>>>>>> 2e9c805fc8ca8c59496db8c5dd8be397305068a6
 import javax.persistence.Table;
 
 @Entity

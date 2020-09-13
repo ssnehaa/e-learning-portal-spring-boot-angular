@@ -35,7 +35,11 @@ public class ForumController {
 	
 	@PostMapping("/addComment")
 	public ResponseEntity<?> addComment(@Valid @RequestBody ForumRequest addCourseRequest) {
+<<<<<<< HEAD
 		Forum forum = new Forum(addCourseRequest.getCourseName(), addCourseRequest.getUsername(), addCourseRequest.getComment(), addCourseRequest.getStudent());
+=======
+		Forum forum = new Forum(addCourseRequest.getCourseName(), addCourseRequest.getUsername(), addCourseRequest.getComment());
+>>>>>>> 2e9c805fc8ca8c59496db8c5dd8be397305068a6
 
 
 		forumRepository.save(forum);
@@ -47,12 +51,15 @@ public class ForumController {
 	  public List<Forum> getComment(@PathVariable("courseName") String courseName) {
 		if(forumRepository.existsByCourseName(courseName)) {
 			List<Forum> cr = forumRepository.findByCourseName(courseName);
+<<<<<<< HEAD
 			for(Forum f : cr) {
 				if(f.getStudent().getPicByte() != null) {
 					Student img = new Student(f.getStudent().getName(), decompressBytes(f.getStudent().getPicByte()));
 					f.setStudent(img);
 				}
 			}
+=======
+>>>>>>> 2e9c805fc8ca8c59496db8c5dd8be397305068a6
 			return cr;
 		}
 		else {
