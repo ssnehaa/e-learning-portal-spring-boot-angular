@@ -54,4 +54,4 @@ It allows the student to submit the assignments and teachers can mark each assig
 
 **Comment Section**
 
-![Comment Section](https://github.com/ssnehaa/VAcademy/blob/master/Screenshots/comment.PNG "Comment Section")
+![Comment Section](https://github.com/ssnehaa/VAcademy/blob/master/Screenshots/comments.PNG "Comment Section")
